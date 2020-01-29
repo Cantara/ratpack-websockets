@@ -57,6 +57,7 @@
 
   <properties>
     <ratpack.version>1.7.6</ratpack.version>
+    <slf4j.version>1.7.30</slf4j.version>
   </properties>
 
   <dependencies>
@@ -64,7 +65,7 @@
       <groupId>io.ratpack</groupId>
       <artifactId>ratpack-core</artifactId>
       <version>${ratpack.version}</version>
- <exclusions>
+         <exclusions>
                 <exclusion>
                    <groupId>org.yaml</groupId>
                    <artifactId>snakeyaml</artifactId>
