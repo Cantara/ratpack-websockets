@@ -2,11 +2,16 @@ package no.cantara.ratpack.websockets;
 
 import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
+import ratpack.api.Nullable;
 import ratpack.exec.ExecController;
+import ratpack.exec.Execution;
+import ratpack.exec.ExecutionRef;
 import ratpack.exec.internal.DefaultExecController;
 import ratpack.exec.internal.DefaultExecution;
-import ratpack.exec.internal.ThreadBinding;
+import ratpack.exec.internal.ExecControllerInternal;
+import ratpack.exec.internal.ExecThreadBinding;
 import ratpack.func.Action;
+import ratpack.registry.RegistrySpec;
 import ratpack.websocket.WebSocketHandler;
 import ratpack.websocket.WebSocketMessage;
 
@@ -23,8 +28,8 @@ public interface RatpackManagedWebSocketHandler<T> extends WebSocketHandler<T> {
 
     @Override
     default void onMessage(WebSocketMessage<T> frame) throws Exception {
-        ThreadBinding.requireComputeThread("WebSocketHandler requires processing by a ratpack-compute thread.");
-        ThreadBinding threadBinding = ThreadBinding.get().get();
+        ExecThreadBinding.requireComputeThread("WebSocketHandler requires processing by a ratpack-compute thread.");
+        ExecThreadBinding threadBinding = ExecThreadBinding.get().get();
         ExecController execController = threadBinding.getExecController();
         if (!(execController instanceof DefaultExecController)) {
             throw new IllegalStateException("Could not get a DefaultExecController from ThreadBinding.get().get()");
@@ -33,7 +38,7 @@ public interface RatpackManagedWebSocketHandler<T> extends WebSocketHandler<T> {
         EventLoopGroup eventLoopGroup = defaultExecController.getEventLoopGroup();
         EventLoop next = eventLoopGroup.next();
         new DefaultExecution(
-                defaultExecController,
+                defaultExecController,null,
                 next,
                 Action.noop(),
                 execution -> {
@@ -44,3 +49,4 @@ public interface RatpackManagedWebSocketHandler<T> extends WebSocketHandler<T> {
                 Action.noop());
     }
 }
+
