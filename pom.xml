@@ -58,6 +58,7 @@
   <properties>
     <ratpack.version>1.7.6</ratpack.version>
     <slf4j.version>1.7.30</slf4j.version>
+    <freemarker.version>2.3.29</freemarker.version>
   </properties>
 
   <dependencies>
@@ -113,16 +114,7 @@
 
             </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.freemarker</groupId>
-      <artifactId>freemarker</artifactId>
-      <version>${freemarker.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
+  
     
        <!-- https://mvnrepository.com/artifact/io.netty/netty-handler -->
         <dependency>
