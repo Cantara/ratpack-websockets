@@ -9,14 +9,14 @@
 
     <groupId>no.cantara</groupId>
     <artifactId>ratpack-websockets</artifactId>
-    <version>0.29</version>
+    <version>0.30-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <scm>
         <developerConnection>scm:git:git@github.com:Cantara/ratpack-websockets.git</developerConnection>
         <connection>scm:git:git@github.com:Cantara/ratpack-websockets.git</connection>
         <url>https://github.com/Cantara/ratpack-websockets</url>
-        <tag>ratpack-websockets-0.29</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
